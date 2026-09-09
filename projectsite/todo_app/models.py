@@ -10,11 +10,19 @@ class BaseModel(models.Model):
 class Priority(BaseModel):
     name = models.CharField(max_length=150)
 
+    class Meta:
+        verbose_name = "Priority"
+        verbose_name_plural = "Priorities"
+
     def __str__(self):
         return self.name
 
 class Category(BaseModel):
     name = models.CharField(max_length=150)
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
@@ -32,7 +40,7 @@ class Task(BaseModel):
             ('completed', 'Completed'),
         ],
         default="pending"
-        )
+    )
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
