@@ -42,6 +42,7 @@
                                         <th scope="col">Status</th>
                                         <th scope="col">Category</th>
                                         <th scope="col">Priority</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
 
@@ -54,6 +55,15 @@
                                             <td>{{ object.get_status_display }}</td>
                                             <td>{{ object.category }}</td>
                                             <td>{{ object.priority }}</td>
+                                            <td>
+                                                <a href="{% url 'task-update' object.id %}">Edit</a>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="7" style="text-align: center">
+                                                <p class="text-sm font-weight-bold mb-0">No Tasks Found.</p>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
