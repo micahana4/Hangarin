@@ -11,4 +11,4 @@ Hangarin is a Django Task and To-Do Manager.
 - Generate sample data using Faker
 
 ## Author
-[Milcahana Q. Montemayor](https://github.com/micahana4)x
+[Milcahana Q. Montemayor](https://github.com/micahana4)
