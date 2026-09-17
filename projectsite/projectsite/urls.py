@@ -19,6 +19,7 @@ from django.urls import path
 from todo_app.views import HomePageView, TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView
 from todo_app.views import NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView
 from todo_app.views import SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView
+from todo_app.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from todo_app import views
 
 urlpatterns = [
@@ -37,5 +38,10 @@ urlpatterns = [
     path('subtasks/', views.SubTaskListView.as_view(), name='subtask-list'),
     path('subtasks/add', views.SubTaskCreateView.as_view(), name='subtask-add'),
     path('subtasks/<pk>/', views.SubTaskUpdateView.as_view(), name='subtask-update'),
-    path('subtasks/<pk>/delete', views.SubTaskDeleteView.as_view(), name='subtask-delete')
+    path('subtasks/<pk>/delete', views.SubTaskDeleteView.as_view(), name='subtask-delete'),
+
+    path('categories/', CategoryListView.as_view(), name='category-list'),
+    path('categories/add', CategoryCreateView.as_view(), name='category-add'),
+    path('categories/<pk>/', CategoryUpdateView.as_view(), name='category-update'),
+    path('categories/<pk>/delete', CategoryDeleteView.as_view(), name='category-delete'),
 ]
