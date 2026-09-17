@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from todo_app.views import HomePageView, TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView
+from todo_app.views import NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView
 from todo_app import views
 
 urlpatterns = [
@@ -25,5 +26,10 @@ urlpatterns = [
     path('tasks/', TaskListView.as_view(), name='task-list'),
     path('tasks/add', TaskCreateView.as_view(), name='task-add'),
     path('tasks/<pk>/', TaskUpdateView.as_view(), name='task-update'),
-    path('tasks/<pk>/delete', TaskDeleteView.as_view(), name='task-delete')
+    path('tasks/<pk>/delete', TaskDeleteView.as_view(), name='task-delete'),
+
+    path('notes/', NoteListView.as_view(), name='note-list'),
+    path('notes/add', NoteCreateView.as_view(), name='note-add'),
+    path('notes/<pk>/', NoteUpdateView.as_view(), name='note-update'),
+    path('notes/<pk>/delete', NoteDeleteView.as_view(), name='note-delete')
 ]
