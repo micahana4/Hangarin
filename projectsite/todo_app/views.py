@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Task, Note, SubTask, Category, Priority
 from todo_app.forms import TaskForm, NoteForm, SubTaskForm, CategoryForm, PriorityForm
 from django.urls import reverse_lazy
-
+from django.db.models import Q
 class HomePageView(TemplateView):
     template_name = "home.html"
 
@@ -18,6 +18,20 @@ class TaskListView(ListView):
     context_object_name = 'task'
     template_name = 'task_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(status__icontains=query) |
+                Q(category__name__icontains=query) |
+                Q(priority__name__icontains=query)
+            )
+        return qs
 
 class TaskCreateView(CreateView):
     model = Task
@@ -46,6 +60,17 @@ class NoteListView(ListView):
     template_name = 'note_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(content__icontains=query) |
+                Q(task__title__icontains=query)
+            )
+        return qs
+
 class NoteCreateView(CreateView):
     model = Note
     form_class = NoteForm
@@ -72,6 +97,18 @@ class SubTaskListView(ListView):
     context_object_name = 'subtask'
     template_name = 'subtask_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter( 
+            Q(title__icontains=query) |
+            Q(status__icontains=query) |
+            Q(parent_task__title__icontains=query)
+        )
+        return qs
 
 class SubTaskCreateView(CreateView):
     model = SubTask
@@ -100,6 +137,16 @@ class CategoryListView(ListView):
     template_name = 'category_list.html'
     paginate_by = 5
 
+    def get_queryset(self):
+            qs = super().get_queryset()
+            query = self.request.GET.get('q')
+    
+            if query:
+                qs = qs.filter( 
+                name__icontains=query
+            )
+            return qs
+
 class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryForm
@@ -126,6 +173,16 @@ class PriorityListView(ListView):
     context_object_name = 'priority'
     template_name = 'priority_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+                qs = super().get_queryset()
+                query = self.request.GET.get('q')
+        
+                if query:
+                    qs = qs.filter( 
+                    name__icontains=query
+                )
+                return qs
 
 class PriorityCreateView(CreateView):
     model = Priority

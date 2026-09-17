@@ -15,9 +15,9 @@
                         <br />
                         <div class="col-md-12 row">
                             <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'subtask-list' %}">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Search ..." class="form-control" />
+                                        <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="la la-search search-icon"></i>
@@ -57,7 +57,7 @@
                                         {% empty %}
                                         <tr>
                                             <td colspan="7" style="text-align: center">
-                                                <p class="text-sm font-weight-bold mb-0">No SubTasks Found.</p>
+                                                <p class="text-sm font-weight-bold mb-0">No Records Found.</p>
                                             </td>
                                         </tr>
                                     {% endfor %}
