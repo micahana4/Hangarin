@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from todo_app.views import HomePageView, TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView
 from todo_app.views import NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView
+from todo_app.views import SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView
 from todo_app import views
 
 urlpatterns = [
@@ -31,5 +32,10 @@ urlpatterns = [
     path('notes/', NoteListView.as_view(), name='note-list'),
     path('notes/add', NoteCreateView.as_view(), name='note-add'),
     path('notes/<pk>/', NoteUpdateView.as_view(), name='note-update'),
-    path('notes/<pk>/delete', NoteDeleteView.as_view(), name='note-delete')
+    path('notes/<pk>/delete', NoteDeleteView.as_view(), name='note-delete'),
+
+    path('subtasks/', views.SubTaskListView.as_view(), name='subtask-list'),
+    path('subtasks/add', views.SubTaskCreateView.as_view(), name='subtask-add'),
+    path('subtasks/<pk>/', views.SubTaskUpdateView.as_view(), name='subtask-update'),
+    path('subtasks/<pk>/delete', views.SubTaskDeleteView.as_view(), name='subtask-delete')
 ]
