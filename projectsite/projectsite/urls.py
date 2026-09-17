@@ -20,6 +20,7 @@ from todo_app.views import HomePageView, TaskListView, TaskCreateView, TaskUpdat
 from todo_app.views import NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView
 from todo_app.views import SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView
 from todo_app.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
+from todo_app.views import PriorityListView, PriorityCreateView, PriorityUpdateView, PriorityDeleteView
 from todo_app import views
 
 urlpatterns = [
@@ -44,4 +45,9 @@ urlpatterns = [
     path('categories/add', CategoryCreateView.as_view(), name='category-add'),
     path('categories/<pk>/', CategoryUpdateView.as_view(), name='category-update'),
     path('categories/<pk>/delete', CategoryDeleteView.as_view(), name='category-delete'),
+
+    path('priorities/', PriorityListView.as_view(), name='priority-list'),
+    path('priorities/add', PriorityCreateView.as_view(), name='priority-add'),
+    path('priorities/<pk>/', PriorityUpdateView.as_view(), name='priority-update'),
+    path('priorities/<pk>/delete', PriorityDeleteView.as_view(), name='priority-delete'),
 ]

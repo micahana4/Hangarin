@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Task, Note, SubTask, Category
-from todo_app.forms import TaskForm, NoteForm, SubTaskForm, CategoryForm
+from .models import Task, Note, SubTask, Category, Priority
+from todo_app.forms import TaskForm, NoteForm, SubTaskForm, CategoryForm, PriorityForm
 from django.urls import reverse_lazy
 
 class HomePageView(TemplateView):
@@ -116,3 +116,30 @@ class CategoryDeleteView(DeleteView):
     model = Category
     template_name = 'category_del.html'
     success_url = reverse_lazy('category-list')
+
+# =========================
+# PRIORITY VIEWS
+# =========================
+
+class PriorityListView(ListView):
+    model = Priority
+    context_object_name = 'priority'
+    template_name = 'priority_list.html'
+    paginate_by = 5
+
+class PriorityCreateView(CreateView):
+    model = Priority
+    form_class = PriorityForm
+    template_name = 'priority_form.html'
+    success_url = reverse_lazy('priority-list')
+
+class PriorityUpdateView(UpdateView):
+    model = Priority
+    form_class = PriorityForm
+    template_name = 'priority_form.html'
+    success_url = reverse_lazy('priority-list')
+
+class PriorityDeleteView(DeleteView):
+    model = Priority
+    template_name = 'priority_del.html'
+    success_url = reverse_lazy('priority-list')
