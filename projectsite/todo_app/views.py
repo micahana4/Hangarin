@@ -43,6 +43,16 @@ class TaskListView(ListView):
     context_object_name = 'task'
     template_name = 'task_list.html'
     paginate_by = 5
+    ordering = ["deadline", "title"]
+
+    def get_ordering(self):
+        allowed = ['title', 'deadline', 'status']
+        sort_by = self.request.GET.get('sort_by')
+
+        if sort_by in allowed:
+            return sort_by
+
+        return 'deadline'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -122,6 +132,15 @@ class SubTaskListView(ListView):
     context_object_name = 'subtask'
     template_name = 'subtask_list.html'
     paginate_by = 5
+
+    def get_ordering(self):
+            allowed = ['title', 'parent_task__title', 'status']
+            sort_by = self.request.GET.get('sort_by')
+    
+            if sort_by in allowed:
+                return sort_by
+    
+            return 'title'
 
     def get_queryset(self):
         qs = super().get_queryset()
