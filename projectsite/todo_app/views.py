@@ -6,8 +6,33 @@ from .models import Task, Note, SubTask, Category, Priority
 from todo_app.forms import TaskForm, NoteForm, SubTaskForm, CategoryForm, PriorityForm
 from django.urls import reverse_lazy
 from django.db.models import Q
+
+
+# =========================
+# HOMEPAGE VIEW
+# ========================= 
+
 class HomePageView(TemplateView):
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context["total_tasks"] = Task.objects.count()
+
+        context["completed_tasks"] = Task.objects.filter(
+            status="completed"
+        ).count()
+
+        context["pending_tasks"] = Task.objects.filter(
+            status="pending"
+        ).count()
+
+        context["in_progress_tasks"] = Task.objects.filter(
+            status="in_progress"
+        ).count()
+
+        return context
 
 # =========================
 # TASK VIEWS
