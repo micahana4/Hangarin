@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from todo_app.views import HomePageView, TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView
 from todo_app.views import NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView
 from todo_app.views import SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView
@@ -25,6 +25,7 @@ from todo_app import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")), 
     path('', HomePageView.as_view(), name='home'),
     path('tasks/', TaskListView.as_view(), name='task-list'),
     path('tasks/add', TaskCreateView.as_view(), name='task-add'),
