@@ -163,8 +163,8 @@ ACCOUNT_SIGNUP_FIELDS = [
     "password1*",
     "password2*",
 ]
-PWA_APP_NAME = 'ProjectSite'
-PWA_APP_DESCRIPTION = "A Progressive Web App version of ProjectSite"
+PWA_APP_NAME = 'Hangarin'
+PWA_APP_DESCRIPTION = "Hangarin is a task and to-do manager that helps you stay organized and productive. With Hangarin, you can easily create, manage, and track your tasks and to-dos, ensuring that you never miss a deadline or forget an important task. Whether you're managing personal projects or collaborating with a team, Hangarin provides the tools you need to stay on top of your responsibilities."
 PWA_APP_THEME_COLOR = '#0A0A0A'
 PWA_APP_BACKGROUND_COLOR = '#FFFFFF'
 PWA_APP_DISPLAY = 'standalone'
