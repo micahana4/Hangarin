@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
+    'pwa',
 ]
 
 SITE_ID = 2
@@ -151,7 +152,7 @@ LOGIN_URL = '/accounts/login/'              # where @login_required will send us
 LOGIN_REDIRECT_URL = '/'                    # where to go after successful login
 LOGOUT_REDIRECT_URL = '/accounts/login/'    # after logout, go back to login
 
-CCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'   # where to redirect after logout
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'   # where to redirect after logout
 ACCOUNT_LOGOUT_ON_GET = True                # logout immediately on GET
 
 ACCOUNT_LOGIN_METHODS = {"username", "email"} # allow login with username OR email
@@ -162,3 +163,34 @@ ACCOUNT_SIGNUP_FIELDS = [
     "password1*",
     "password2*",
 ]
+PWA_APP_NAME = 'ProjectSite'
+PWA_APP_DESCRIPTION = "A Progressive Web App version of ProjectSite"
+PWA_APP_THEME_COLOR = '#0A0A0A'
+PWA_APP_BACKGROUND_COLOR = '#FFFFFF'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/accounts/login/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/img/icon-192.jpg',
+        'sizes': '192x192'
+    },
+    {
+        'src': '/static/img/icon-512.jpg',
+        'sizes': '512x512'
+    }
+    ]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/img/icon-192.jpg',
+        'sizes': '192x192'
+    },
+    {
+        'src': '/static/img/icon-512.jpg',
+        'sizes': '512x512'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')

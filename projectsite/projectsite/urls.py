@@ -22,8 +22,10 @@ from todo_app.views import SubTaskListView, SubTaskCreateView, SubTaskUpdateView
 from todo_app.views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from todo_app.views import PriorityListView, PriorityCreateView, PriorityUpdateView, PriorityDeleteView
 from todo_app import views
+from django.urls import path, include
 
 urlpatterns = [
+    path('', include('pwa.urls')),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")), 
     path('', HomePageView.as_view(), name='home'),
