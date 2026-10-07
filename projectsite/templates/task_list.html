@@ -12,46 +12,33 @@
                             <div class="card-title">List of Tasks</div>
                             <div class="card-category">Page Subtitle</div>
                         </div>
-                        <br />
-                        <div class="col-md-12 row">
-                            <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'task-list' %}">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Search ..." class="form-control" name="q" />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="la la-search search-icon"></i>
-                                            </span>
-                                        </div>
+                        <div class="list-controls">
+                            <form class="list-search nav-search" action="{% url 'task-list' %}">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search ..." class="form-control" name="q" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="la la-search search-icon"></i>
+                                        </span>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="pull-right">
-                                    <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded">Add Task</a>
                                 </div>
-                            </div>
+                            </form>
+                            <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded list-add-button">Add Task</a>
                         </div>
-                        
                         <div class="col-md-12">
-                            <form method="get" class="row g-2 align-items-center">
-                                <div class="col-auto">
-                                    <label for="smallSelect" class="col-form-label">Sort by</label>
-                                </div>
-                                <div class="col-auto">
-                                    <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
-                                        <option value="deadline" {% if request.GET.sort_by == "deadline" %}selected{% endif %}>Deadline</option>
-                                        <option value="title"{% if request.GET.sort_by == "title" %}selected{% endif %}>Title</option>
-                                        <option value="status"{% if request.GET.sort_by == "status" %}selected{% endif %}>Status</option>
-                                    </select>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
-                                </div>
+                            <form method="get" class="list-sort-controls">
+                                <label for="smallSelect" class="col-form-label">Sort by</label>
+                                <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                    <option value="deadline" {% if request.GET.sort_by == "deadline" %}selected{% endif %}>Deadline</option>
+                                    <option value="title"{% if request.GET.sort_by == "title" %}selected{% endif %}>Title</option>
+                                    <option value="status"{% if request.GET.sort_by == "status" %}selected{% endif %}>Status</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
                             </form>
                         </div>
 
                         <div class="card-body">
+                            <div class="table-responsive">
                             <table class="table table-striped mt-3">
                                 <thead>
                                     <tr>
@@ -88,6 +75,7 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            </div>
                             {% include 'includes/pagination.html' %}
                         </div>
                     </div>
