@@ -63,3 +63,24 @@
     flex: 1 1 120px;
   }
 }
+
+@media (max-width: 400px) {
+  .card-footer nav {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-footer .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-footer .pagination .page-link {
+    padding-right: 0.45rem;
+    padding-left: 0.45rem;
+  }
+}
